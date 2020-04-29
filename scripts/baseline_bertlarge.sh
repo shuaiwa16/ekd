@@ -1,0 +1,23 @@
+CUDA_VISIBLE_DEVICES=0 python3.6 main.py \
+  --use_tpu=False \
+  --do_train=True \
+  --do_eval=True \
+  --raw_data_dir=data/ace/csv_raw+NT \
+  --sup_train_data_dir=data/proc_data/ace/csv_raw+NT/train \
+  --unsup_data_dir=data/proc_data/ace/csv_raw+NT/unsup \
+  --eval_data_dir=data/proc_data/ace/csv_raw+NT/dev \
+  --bert_config_file=pretrained_models/bert_finetune/wwm_uncased_L-24_H-1024_A-16/bert_config.json \
+  --vocab_file=pretrained_models/bert_finetune/wwm_uncased_L-24_H-1024_A-16/vocab.txt \
+  --init_checkpoint=pretrained_models/bert_finetune/wwm_uncased_L-24_H-1024_A-16/bert_model.ckpt \
+  --task_name=IMDB \
+  --train_batch_size=8 \
+  --model_dir=ckpt/baseline_bertlarge_notsa \
+  --num_train_steps=16000 \
+  --learning_rate=2e-05 \
+  --num_warmup_steps=1000 \
+  --unsup_ratio=0 \
+  --tsa="" \
+  --aug_ops=bt-0.9 \
+  --aug_copy=1 \
+  --uda_coeff=1 \
+  $@
